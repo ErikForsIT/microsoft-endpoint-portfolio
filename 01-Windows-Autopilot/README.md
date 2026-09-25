@@ -1,32 +1,32 @@
-# Project 01 · Windows Autopilot
+# Projekt 01 · Windows Autopilot
 
-## Objective
+## Syfte
 
-Provision a new Windows 11 device through a user-driven Microsoft Entra join flow and verify the resulting cloud identity and Intune management state.
+Provisionera en ny Windows 11-enhet genom ett användardrivet flöde med Microsoft Entra join och verifiera den resulterande molnidentiteten och hanteringsstatusen i Intune.
 
-## Implementation
+## Genomförande
 
-- Collected and imported the device hardware hash.
-- Created and assigned a Windows Autopilot deployment profile.
-- Assigned the test user and prepared the VM with Sysprep/OOBE.
-- Completed organization sign-in, Enrollment Status Page and Windows Hello setup.
-- Verified the deployment in Intune and locally with `dsregcmd /status`.
+- Samlade in och importerade enhetens hardware hash.
+- Skapade och tilldelade en distributionsprofil för Windows Autopilot.
+- Tilldelade testanvändaren och förberedde den virtuella datorn med Sysprep/OOBE.
+- Genomförde organisationsinloggning, Enrollment Status Page och Windows Hello-konfiguration.
+- Verifierade distributionen i Intune och lokalt med `dsregcmd /status`.
 
-## Result
+## Resultat
 
-The Autopilot deployment completed successfully in 2 minutes and 29 seconds. The device appeared as corporate-owned, Intune-managed and compliant. Local verification returned `AzureAdJoined : YES`.
+Autopilot-distributionen slutfördes framgångsrikt på 2 minuter och 29 sekunder. Enheten visades som företagsägd, Intune-hanterad och compliant. Den lokala verifieringen returnerade `AzureAdJoined : YES`.
 
 ### OOBE
 
 ![Windows Autopilot OOBE](images/autopilot-oobe.jpg)
 
-### Deployment report
+### Distributionsrapport
 
-![Successful Autopilot deployment](images/autopilot-deployment-success.jpg)
+![Lyckad Autopilot-distribution](images/autopilot-deployment-success.jpg)
 
-### Local identity verification
+### Lokal identitetsverifiering
 
-![dsregcmd verification](images/entra-join-verification.jpg)
+![Verifiering med dsregcmd](images/entra-join-verification.jpg)
 
-[Back to portfolio](../README.md)
+[Tillbaka till portfolion](../README.md)
 
