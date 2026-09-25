@@ -1,38 +1,38 @@
-# Microsoft Endpoint Management Portfolio
+# Portfolio – Microsoft Endpoint Management
 
-Hands-on Microsoft Intune and Microsoft Entra ID portfolio by **Erik Fors**.
+Praktisk portfolio inom Microsoft Intune och Microsoft Entra ID av **Erik Fors**.
 
-This repository documents six practical endpoint-management projects completed in a dedicated lab tenant with managed Windows 11 virtual machines. The work covers provisioning, security, application delivery, compliance, access control and PowerShell automation.
+Det här repot dokumenterar sex praktiska projekt som genomförts i en separat labbtenant med hanterade virtuella Windows 11-klienter. Arbetet omfattar provisionering, säkerhet, applikationsdistribution, efterlevnad, åtkomstkontroll och PowerShell-automatisering.
 
-[Download the complete portfolio (PDF)](docs/Erik-Fors-Microsoft-Endpoint-Portfolio.pdf)
+[Ladda ned den kompletta portfolion (PDF)](docs/Erik-Fors-Microsoft-Endpoint-Portfolio.pdf)
 
-![MD-102 training lab](assets/portfolio-banner.jpg)
+![MD-102-labbmiljö](assets/portfolio-banner.jpg)
 
-## Projects
+## Projekt
 
-| Project | Scope | Verified result |
+| Projekt | Omfattning | Verifierat resultat |
 |---|---|---|
-| [01 · Windows Autopilot](01-Windows-Autopilot/) | Hardware hash, deployment profile, OOBE and Entra join | Successful user-driven deployment and managed device state |
-| [02 · BitLocker and Windows LAPS](02-BitLocker-Windows-LAPS/) | Disk encryption, recovery and managed local administrator | Policies applied, encrypted OS drive and rotated LAPS password |
-| [03 · Win32 app deployment](03-Win32-App-Deployment/) | Packaging and deployment of 7-Zip | Application installed and reported as installed in Intune |
-| [04 · Compliance and Conditional Access](04-Compliance-Conditional-Access/) | Device-health requirements and access enforcement | Compliant device and successful Conditional Access evaluation |
-| [05 · Defender endpoint security](05-Defender-Endpoint-Security/) | Microsoft Defender Antivirus and Windows Firewall | Policies succeeded and effective protection verified locally |
-| [06 · PowerShell automation](06-PowerShell-Automation/) | Intune Platform script in system context | Registry baseline changed, logged locally and reported as succeeded |
+| [01 · Windows Autopilot](01-Windows-Autopilot/) | Hardware hash, distributionsprofil, OOBE och Entra-anslutning | Lyckad användardriven distribution och hanterad enhetsstatus |
+| [02 · BitLocker och Windows LAPS](02-BitLocker-Windows-LAPS/) | Diskkryptering, återställning och hanterad lokal administratör | Policyerna tillämpades, OS-disken krypterades och LAPS-lösenordet roterades |
+| [03 · Win32-appdistribution](03-Win32-App-Deployment/) | Paketering och distribution av 7-Zip | Applikationen installerades och rapporterades som installerad i Intune |
+| [04 · Efterlevnad och villkorsstyrd åtkomst](04-Compliance-Conditional-Access/) | Enhetshälsa och åtkomstkrav | Enheten blev compliant och Conditional Access utvärderades framgångsrikt |
+| [05 · Defender Endpoint Security](05-Defender-Endpoint-Security/) | Microsoft Defender Antivirus och Windows Defender Firewall | Policyerna lyckades och det effektiva skyddet verifierades lokalt |
+| [06 · PowerShell-automatisering](06-PowerShell-Automation/) | Intune Platform script i systemkontext | Registerbaslinjen ändrades, loggades lokalt och rapporterades som lyckad |
 
-## Technology used
+## Tekniker
 
 - Microsoft Intune
-- Microsoft Entra ID and Conditional Access
+- Microsoft Entra ID och Conditional Access
 - Windows Autopilot
 - Windows 11 Enterprise
-- Microsoft Defender Antivirus and Windows Defender Firewall
-- BitLocker and Windows LAPS
+- Microsoft Defender Antivirus och Windows Defender Firewall
+- BitLocker och Windows LAPS
 - Win32 Content Prep Tool
 - PowerShell
 
-## Validation approach
+## Verifieringsmetod
 
-Each project is supported by evidence from at least two layers: Intune or Entra reporting and local Windows verification. Examples include deployment reports, device status, sign-in logs, `dsregcmd`, registry queries, `Get-MpComputerStatus` and `Get-NetFirewallProfile`.
+Varje projekt stöds av bevis från minst två nivåer: rapportering i Intune eller Entra samt lokal verifiering i Windows. Exempel är distributionsrapporter, enhetsstatus, inloggningsloggar, `dsregcmd`, registerfrågor, `Get-MpComputerStatus` och `Get-NetFirewallProfile`.
 
-> This is a training-lab portfolio. Names, groups and policies are lab resources rather than production systems.
+> Detta är en utbildnings- och labbportfolio. Namn, grupper och policyer är labbresurser och inte produktionssystem.
 
