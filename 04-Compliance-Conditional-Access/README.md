@@ -1,33 +1,33 @@
-# Project 04 · Compliance and Conditional Access
+# Projekt 04 · Efterlevnad och villkorsstyrd åtkomst
 
-## Objective
+## Syfte
 
-Evaluate Windows device health in Intune and use that result as an access condition in Microsoft Entra ID.
+Utvärdera en Windows-enhets säkerhetsstatus i Intune och använda resultatet som åtkomstvillkor i Microsoft Entra ID.
 
-## Implementation
+## Genomförande
 
-- Required BitLocker, Secure Boot, Windows Firewall and TPM.
-- Set the minimum operating-system version to `10.0.22000`.
-- Required Microsoft Defender for Endpoint machine risk to be Low or lower.
-- Assigned the policy through a Windows 11 device filter.
-- Created a Conditional Access policy for Windows devices.
-- Required the device to be marked as compliant before access was granted.
+- Krävde BitLocker, Secure Boot, Windows Firewall och TPM.
+- Satte lägsta operativsystemsversion till `10.0.22000`.
+- Krävde att maskinrisken i Microsoft Defender for Endpoint var Low eller lägre.
+- Tilldelade policyn med ett enhetsfilter för Windows 11.
+- Skapade en Conditional Access-policy för Windows-enheter.
+- Krävde att enheten var markerad som compliant innan åtkomst beviljades.
 
-## Result
+## Resultat
 
-The target device became compliant. A later sign-in was evaluated successfully by Conditional Access after the resource assignment was corrected to include all cloud resources.
+Målenheten blev compliant. En senare inloggning utvärderades framgångsrikt av Conditional Access efter att resursomfattningen korrigerats till att inkludera alla molnresurser.
 
-### Compliance policy
+### Efterlevnadspolicy
 
-![Compliance policy summary](images/compliance-policy.jpg)
+![Sammanfattning av efterlevnadspolicyn](images/compliance-policy.jpg)
 
-### Device compliance
+### Enhetens efterlevnadsstatus
 
-![Compliant Windows device](images/device-compliance.jpg)
+![Compliant Windows-enhet](images/device-compliance.jpg)
 
-### Conditional Access verification
+### Verifiering av Conditional Access
 
-![Conditional Access success in sign-in logs](images/conditional-access-success.jpg)
+![Lyckad Conditional Access-utvärdering i inloggningsloggen](images/conditional-access-success.jpg)
 
-[Back to portfolio](../README.md)
+[Tillbaka till portfolion](../README.md)
 
