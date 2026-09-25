@@ -1,37 +1,37 @@
-# Project 02 · BitLocker and Windows LAPS
+# Projekt 02 · BitLocker och Windows LAPS
 
-## Objective
+## Syfte
 
-Strengthen a managed Windows 11 device with centrally controlled OS-drive encryption and a unique, automatically rotated local administrator password.
+Förstärka säkerheten på en hanterad Windows 11-enhet med centralt styrd kryptering av operativsystemdisken och ett unikt, automatiskt roterat lokalt administratörslösenord.
 
-## Implementation
+## Genomförande
 
-- Configured Windows LAPS with Microsoft Entra ID password backup.
-- Enabled automatic account management for `WLapsAdmin`.
-- Configured a 30-day rotation period and a six-word passphrase.
-- Created a BitLocker endpoint security policy for the operating-system drive.
-- Configured TPM/startup behavior and a 48-digit recovery password.
-- Scoped the deployment to Windows 11 devices with an assignment filter.
+- Konfigurerade Windows LAPS med säkerhetskopiering av lösenordet till Microsoft Entra ID.
+- Aktiverade automatisk kontohantering för `WLapsAdmin`.
+- Konfigurerade 30 dagars rotationsintervall och en lösenordsfras med sex ord.
+- Skapade en endpoint security-policy för BitLocker på operativsystemdisken.
+- Konfigurerade TPM/startbeteende och ett 48-siffrigt återställningslösenord.
+- Begränsade distributionen till Windows 11-enheter med ett tilldelningsfilter.
 
-## Result
+## Resultat
 
-Both policies reported a successful deployment without errors or conflicts. BitLocker was active on `C:` and Intune displayed the managed LAPS account with password-rotation timestamps.
+Båda policyerna rapporterade lyckad distribution utan fel eller konflikter. BitLocker var aktivt på `C:` och Intune visade det hanterade LAPS-kontot med tidpunkter för lösenordsrotation.
 
-### LAPS policy
+### LAPS-policy
 
-![Windows LAPS policy](images/laps-policy.jpg)
+![Windows LAPS-policy](images/laps-policy.jpg)
 
-### Policy deployment status
+### Distributionsstatus
 
-![BitLocker status](images/bitlocker-status.jpg)
+![Status för BitLocker](images/bitlocker-status.jpg)
 
-![LAPS status](images/laps-status.jpg)
+![Status för Windows LAPS](images/laps-status.jpg)
 
-### Client and password verification
+### Verifiering på klienten och i Intune
 
-![BitLocker enabled locally](images/bitlocker-client.jpg)
+![BitLocker aktiverat lokalt](images/bitlocker-client.jpg)
 
-![Windows LAPS password record](images/laps-password-record.jpg)
+![Lösenordspost för Windows LAPS](images/laps-password-record.jpg)
 
-[Back to portfolio](../README.md)
+[Tillbaka till portfolion](../README.md)
 
