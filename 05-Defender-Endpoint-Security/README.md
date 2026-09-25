@@ -1,39 +1,39 @@
-# Project 05 · Defender endpoint security
+# Projekt 05 · Defender Endpoint Security
 
-## Objective
+## Syfte
 
-Deploy a practical endpoint-security baseline for Microsoft Defender Antivirus and Windows Defender Firewall, then verify both the management status and the effective local configuration.
+Distribuera en praktisk säkerhetsbaslinje för Microsoft Defender Antivirus och Windows Defender Firewall samt verifiera både hanteringsstatusen och den effektiva lokala konfigurationen.
 
-## Antivirus configuration
+## Antiviruskonfiguration
 
-- Cloud block level set to High.
-- PUA protection enabled in block mode.
-- Real-time, behavior and downloaded-file monitoring enabled.
-- Daily quick scan configured.
-- Network Protection introduced in audit mode to reduce rollout risk.
+- Cloud Block Level satt till High.
+- PUA Protection aktiverat i blockeringsläge.
+- Realtidsskydd, beteendeövervakning och kontroll av nedladdade filer aktiverades.
+- Daglig snabbskanning konfigurerades.
+- Network Protection infördes i audit mode för att minska risken vid utrullning.
 
-## Firewall configuration
+## Brandväggskonfiguration
 
-- Domain, Private and Public profiles enabled.
-- Default inbound traffic blocked.
-- Default outbound traffic allowed.
-- Local rules permitted in the lab configuration.
+- Profilerna Domain, Private och Public aktiverades.
+- Inkommande trafik blockerades som standard.
+- Utgående trafik tilläts som standard.
+- Lokala regler tilläts i labbkonfigurationen.
 
-## Result
+## Resultat
 
-Both endpoint security policies reported `1 Succeeded` with no errors or conflicts. PowerShell and `netsh` confirmed active antivirus protection and the effective firewall policy `BlockInbound,AllowOutbound`.
+Båda endpoint security-policyerna rapporterade `1 Succeeded` utan fel eller konflikter. PowerShell och `netsh` bekräftade aktivt antivirusskydd och den effektiva brandväggspolicyn `BlockInbound,AllowOutbound`.
 
-### Antivirus deployment and local verification
+### Antivirus – distribution och lokal verifiering
 
-![Antivirus policy status](images/antivirus-policy-status.jpg)
+![Status för antiviruspolicyn](images/antivirus-policy-status.jpg)
 
-![Microsoft Defender local verification](images/antivirus-local-verification.jpg)
+![Lokal verifiering av Microsoft Defender](images/antivirus-local-verification.jpg)
 
-### Firewall deployment and local verification
+### Brandvägg – distribution och lokal verifiering
 
-![Firewall policy status](images/firewall-policy-status.jpg)
+![Status för brandväggspolicyn](images/firewall-policy-status.jpg)
 
-![Windows Firewall local verification](images/firewall-local-verification.jpg)
+![Lokal verifiering av Windows Firewall](images/firewall-local-verification.jpg)
 
-[Back to portfolio](../README.md)
+[Tillbaka till portfolion](../README.md)
 
