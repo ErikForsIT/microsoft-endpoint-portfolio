@@ -1,36 +1,36 @@
-# Project 06 · PowerShell automation with Intune
+# Projekt 06 · PowerShell-automatisering med Intune
 
-## Objective
+## Syfte
 
-Use an Intune Platform script to apply a computer-level Windows baseline in system context and create durable local evidence of the change.
+Använda ett Intune Platform script för att tillämpa en datorbaserad Windows-baslinje i systemkontext och skapa beständig lokal spårbarhet för ändringen.
 
-## Implementation
+## Genomförande
 
-- Created an idempotent PowerShell script.
-- Set `DisableWindowsConsumerFeatures` under the Windows CloudContent policy key.
-- Ran the script without the signed-in user's credentials in 64-bit PowerShell.
-- Assigned the script to the Windows device group.
-- Wrote a local audit log under `C:\ProgramData\ErikFors\Project6`.
+- Skapade ett idempotent PowerShell-script.
+- Konfigurerade `DisableWindowsConsumerFeatures` under Windows-policyn CloudContent.
+- Körningen utfördes utan den inloggade användarens autentiseringsuppgifter och i 64-bitars PowerShell.
+- Tilldelade scriptet till gruppen med Windows-enheter.
+- Skrev en lokal granskningslogg under `C:\ProgramData\ErikFors\Project6`.
 
-This project uses an Intune **Platform script**, not Proactive Remediations, because Remediations was not available in the lab tenant.
+Projektet använder ett **Intune Platform script**, inte Proactive Remediations, eftersom Remediations inte var tillgängligt i labbtenantens licens.
 
-## Result
+## Resultat
 
-Intune reported one successful device execution and no errors. The registry value changed from `0` to `1`, and the local log recorded a `SUCCESS` entry with the before-and-after values.
+Intune rapporterade en lyckad enhetskörning utan fel. Registervärdet ändrades från `0` till `1` och den lokala loggen registrerade `SUCCESS` tillsammans med värdena före och efter ändringen.
 
-[View the PowerShell source](scripts/Configure-WindowsBaseline.ps1)
+[Visa PowerShell-källkoden](scripts/Configure-WindowsBaseline.ps1)
 
-### Script configuration
+### Scriptkonfiguration
 
-![Intune Platform script configuration](images/platform-script-configuration.jpg)
+![Konfiguration av Intune Platform script](images/platform-script-configuration.jpg)
 
-### Intune execution result
+### Körresultat i Intune
 
-![Successful script execution](images/script-execution-success.jpg)
+![Lyckad scriptkörning](images/script-execution-success.jpg)
 
-### Local verification and log
+### Lokal verifiering och logg
 
-![Registry and log verification](images/local-verification-log.jpg)
+![Verifiering av registervärde och logg](images/local-verification-log.jpg)
 
-[Back to portfolio](../README.md)
+[Tillbaka till portfolion](../README.md)
 
