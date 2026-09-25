@@ -1,5 +1,5 @@
-# Portfolio document
+# Portfoliodokument
 
-The PDF in this folder is the complete visual version of the Microsoft Endpoint Management portfolio. The project folders in the repository provide shorter technical summaries and direct access to the PowerShell source.
+PDF-filen i den här mappen är den kompletta visuella versionen av portfolion inom Microsoft Endpoint Management. Projektmapparna i repot innehåller kortare tekniska sammanfattningar och direkt åtkomst till PowerShell-källkoden.
 
-[Open the complete portfolio](Erik-Fors-Microsoft-Endpoint-Portfolio.pdf)
+[Öppna den kompletta portfolion](Erik-Fors-Microsoft-Endpoint-Portfolio.pdf)
