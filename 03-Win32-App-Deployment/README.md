@@ -1,32 +1,32 @@
-# Project 03 · Win32 application deployment
+# Projekt 03 · Win32-appdistribution
 
-## Objective
+## Syfte
 
-Package, deploy and validate a traditional Windows application through Microsoft Intune.
+Paketera, distribuera och verifiera en traditionell Windows-applikation genom Microsoft Intune.
 
-## Implementation
+## Genomförande
 
-- Packaged 7-Zip 26.03 x64 as an `.intunewin` file.
-- Configured silent install and uninstall commands.
-- Used system installation context and x64 requirements.
-- Added a file-based detection rule for the installed application.
-- Assigned the app to the managed Windows device group.
+- Paketerade 7-Zip 26.03 x64 som en `.intunewin`-fil.
+- Konfigurerade tysta installations- och avinstallationskommandon.
+- Använde systemkontext och x64-krav för installationen.
+- Skapade en filbaserad identifieringsregel för den installerade applikationen.
+- Tilldelade applikationen till gruppen med hanterade Windows-enheter.
 
-## Result
+## Resultat
 
-Intune reported one installed device with no failures. The application was also visible in the Windows 11 Start menu, confirming the cloud-to-client deployment path.
+Intune rapporterade en installerad enhet utan fel. Applikationen var även synlig i Start-menyn på Windows 11-klienten, vilket verifierade hela distributionskedjan från moln till klient.
 
-### Application configuration
+### Applikationskonfiguration
 
-![7-Zip Win32 app configuration](images/app-configuration.jpg)
+![Konfiguration av Win32-appen 7-Zip](images/app-configuration.jpg)
 
-### Intune installation status
+### Installationsstatus i Intune
 
-![Installed device status](images/install-status.jpg)
+![Status för installerad enhet](images/install-status.jpg)
 
-### Client verification
+### Verifiering på klienten
 
-![7-Zip installed on Windows 11](images/client-verification.jpg)
+![7-Zip installerat på Windows 11](images/client-verification.jpg)
 
-[Back to portfolio](../README.md)
+[Tillbaka till portfolion](../README.md)
 
