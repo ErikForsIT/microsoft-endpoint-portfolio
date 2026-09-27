@@ -1,36 +1,55 @@
-# Projekt 06 · PowerShell-automatisering med Intune
+# 06 PowerShell via Intune
 
-## Syfte
+**Resultat:** Intune rapporterar en lyckad enhetskörning. Registervärdet `DisableWindowsConsumerFeatures` ändrades från `0` till `1` och ändringen dokumenterades i en lokal logg.
 
-Använda ett Intune Platform script för att tillämpa en datorbaserad Windows-baslinje i systemkontext och skapa beständig lokal spårbarhet för ändringen.
+**[Visa PowerShell-källkoden](scripts/Configure-WindowsBaseline.ps1)**
+
+## Mål och konfiguration
+
+Jag använde ett Intune Platform script för en avgränsad registerändring i systemkontext. Målet var att distribuera konfigurationen centralt och kunna verifiera resultatet både i Intune och lokalt.
+
+| Del | Val i labben |
+| :--- | :--- |
+| Distributionsmetod | Intune Platform script |
+| Körningskontext | System; den inloggade användarens autentiseringsuppgifter används inte |
+| PowerShell | 64-bitars värd |
+| Signaturkontroll | Avstängd i labbkonfigurationen |
+| Tilldelning | Windows Devices; gruppen innehöll tre enheter |
+| Registervärde | `DisableWindowsConsumerFeatures` under `HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent` |
+| Önskat värde | DWORD `1` |
+| Loggfil | `C:\ProgramData\ErikFors\Project6\WindowsBaseline.log` |
+
+Platform scripts valdes eftersom labbtenantens licens inte omfattade Remediations. Återkommande detektering och schemalagd korrigering ingick inte i projektet.
 
 ## Genomförande
 
-- Skapade ett idempotent PowerShell-script.
-- Konfigurerade `DisableWindowsConsumerFeatures` under Windows-policyn CloudContent.
-- Körningen utfördes utan den inloggade användarens autentiseringsuppgifter och i 64-bitars PowerShell.
-- Tilldelade scriptet till gruppen med Windows-enheter.
-- Skrev en lokal granskningslogg under `C:\ProgramData\ErikFors\Project6`.
+1. Jag satte registervärdet till `0` för att skapa ett känt utgångsläge.
+2. Jag distribuerade skriptet via Intune och följde körresultatet.
+3. Jag läste tillbaka värdet med `reg query` och kontrollerade loggfilen.
 
-Projektet använder ett **Intune Platform script**, inte Proactive Remediations, eftersom Remediations inte var tillgängligt i labbtenantens licens.
+## Verifiering
 
-## Resultat
+![Registervärdet är 0x1 och den lokala loggen visar SUCCESS](images/local-verification-log.jpg)
 
-Intune rapporterade en lyckad enhetskörning utan fel. Registervärdet ändrades från `0` till `1` och den lokala loggen registrerade `SUCCESS` tillsammans med värdena före och efter ändringen.
+Körningen verifierades på **en klient**. Gruppens tre medlemmar ska inte tolkas som tre verifierade körningar.
 
-[Visa PowerShell-källkoden](scripts/Configure-WindowsBaseline.ps1)
+<details>
+<summary>Visa skriptinställningar och körresultat i Intune</summary>
 
-### Scriptkonfiguration
+![Platform script med systemkontext och 64-bitars PowerShell](images/platform-script-configuration.jpg)
 
-![Konfiguration av Intune Platform script](images/platform-script-configuration.jpg)
+![Intune visar en lyckad skriptkörning och inga fel](images/script-execution-success.jpg)
 
-### Körresultat i Intune
+</details>
 
-![Lyckad scriptkörning](images/script-execution-success.jpg)
+## Källkod och lärdom
 
-### Lokal verifiering och logg
+Källkoden kontrollerar det aktuella värdet innan den skriver önskat värde. Den loggar både ändring och oförändrat läge och använder exitkod `0` vid framgång och `1` vid fel.
 
-![Verifiering av registervärde och logg](images/local-verification-log.jpg)
+Skärmbilden visar labbkörningen. Källkoden i repot använder samma registervärde och loggsökväg, men loggradernas formulering skiljer sig från bilden. Något separat test av upprepad körning redovisas inte.
 
-[Tillbaka till portfolion](../README.md)
+Projektet gav mig praktisk erfarenhet av systemkontext, riktad skriptdistribution och verifiering med ett tydligt före- och efterläge.
 
+---
+
+[Projektöversikt](../README.md) · [Föregående projekt](../05-Defender-Endpoint-Security/)

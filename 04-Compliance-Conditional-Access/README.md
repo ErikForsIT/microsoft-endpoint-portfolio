@@ -1,33 +1,50 @@
-# Projekt 04 · Efterlevnad och villkorsstyrd åtkomst
+# 04 Efterlevnad och Conditional Access
 
-## Syfte
+**Resultat:** CL2 visas som `Compliant`. Efter korrigerad resursomfattning visar en ny OfficeHome-inloggning Conditional Access-status `Success`.
 
-Utvärdera en Windows-enhets säkerhetsstatus i Intune och använda resultatet som åtkomstvillkor i Microsoft Entra ID.
+## Mål och konfiguration
 
-## Genomförande
+Jag kopplade säkerhetskrav i Intune till ett åtkomstvillkor i Microsoft Entra ID. Målet var att använda enhetens efterlevnadsstatus vid bedömning av åtkomst till molnresurser.
 
-- Krävde BitLocker, Secure Boot, Windows Firewall och TPM.
-- Satte lägsta operativsystemsversion till `10.0.22000`.
-- Krävde att maskinrisken i Microsoft Defender for Endpoint var Low eller lägre.
-- Tilldelade policyn med ett enhetsfilter för Windows 11.
-- Skapade en Conditional Access-policy för Windows-enheter.
-- Krävde att enheten var markerad som compliant innan åtkomst beviljades.
+| Del | Val i labben |
+| :--- | :--- |
+| Enhetshälsa | BitLocker och Secure Boot krävs |
+| Systemsäkerhet | Brandvägg och TPM krävs |
+| Minsta OS-version | `10.0.22000` |
+| Maskinrisk | Low eller lägre konfigurerat i efterlevnadspolicyn |
+| Åtgärd vid avvikelse | Mark device noncompliant: Immediately |
+| Tilldelning | Win devices med Windows 11-filter |
+| Åtkomstkrav | Require device to be marked as compliant |
 
-## Resultat
+## Felsökning
 
-Målenheten blev compliant. En senare inloggning utvärderades framgångsrikt av Conditional Access efter att resursomfattningen korrigerats till att inkludera alla molnresurser.
+Första inloggningstestet gav `Not Applied` trots att CA-policyn var aktiverad. Jag öppnade policydetaljerna i inloggningsloggen och såg att resursen inte ingick. Jag ändrade målresurserna till **All resources** och testade igen.
 
-### Efterlevnadspolicy
+| Steg | Observation eller åtgärd |
+| :--- | :--- |
+| Första testet | `Not Applied`; resursen var inte inkluderad |
+| Åtgärd | Korrigerade målresurserna och behöll kravet på compliant enhet |
+| Nytt test | OfficeHome-inloggningen visar CA-status `Success` |
 
-![Sammanfattning av efterlevnadspolicyn](images/compliance-policy.jpg)
+## Verifiering
 
-### Enhetens efterlevnadsstatus
+![OfficeHome-inloggning med Conditional Access Success](images/conditional-access-success.jpg)
 
-![Compliant Windows-enhet](images/device-compliance.jpg)
+<details>
+<summary>Visa efterlevnadspolicyn och enheternas status</summary>
 
-### Verifiering av Conditional Access
+![Konfigurerade krav på Windows-enhetens efterlevnad](images/compliance-policy.jpg)
 
-![Lyckad Conditional Access-utvärdering i inloggningsloggen](images/conditional-access-success.jpg)
+![CL2 visas som Compliant och CL1 som Noncompliant](images/device-compliance.jpg)
 
-[Tillbaka till portfolion](../README.md)
+</details>
 
+## Lärdom och nästa test
+
+Läget On räcker inte för att en CA-policy ska träffa en viss inloggning. Resurs, tilldelning och villkor behöver matcha testet. Inloggningsloggens policydetaljer gav underlag för att hitta avvikelsen.
+
+Den dokumenterade inloggningen visar ett godkänt test. Ett separat test av nekad åtkomst från en noncompliant enhet återstår. Kravet på maskinrisk är konfigurerat; separat riskrapportering från Defender for Endpoint verifieras inte av bilderna här.
+
+---
+
+[Projektöversikt](../README.md) · [Föregående projekt](../03-Win32-App-Deployment/) · [Nästa projekt](../05-Defender-Endpoint-Security/)
