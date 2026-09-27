@@ -2,9 +2,19 @@
 
 **Erik Fors · Teknisk portfolio · Sex praktiska projekt**
 
-Jag har byggt och testat en Windows 11-labbmiljö med Microsoft Intune och Microsoft Entra ID. Här visar jag hur jag provisionerar enheter, distribuerar appar, konfigurerar klientskydd och felsöker åtkomst. Varje projekt beskriver mina konfigurationsval och hur jag kontrollerade resultatet.
+Jag söker min första roll inom IT-support eller endpointadministration, med särskilt intresse för Microsoft Intune, Microsoft Entra ID och Windows. Här visar jag min praktiska erfarenhet från en egen labbmiljö: från att driftsätta en klient och distribuera appar till att konfigurera klientskydd och felsöka åtkomst.
+
+Portfolion kompletterar min förberedelse för MD-102. Projekten visar mitt arbete i en testmiljö, med skärmbilder, tekniska val och kontroller av resultatet.
 
 **[Läs portfolion som PDF – 16 sidor](docs/Erik-Fors-Microsoft-Endpoint-Portfolio.pdf)** · [Visa PowerShell-källkoden](06-PowerShell-Automation/scripts/Configure-WindowsBaseline.ps1)
+
+## Börja här
+
+Tre projekt ger en snabb bild av mitt arbete:
+
+- **[Driftsätta en Windows-klient](01-Windows-Autopilot/)** — från Autopilot-registrering till kontrollerad Entra-anslutning.
+- **[Felsöka åtkomst](04-Compliance-Conditional-Access/)** — följa en avvikelse i inloggningsloggen, korrigera resursomfattningen och göra ett nytt test.
+- **[Distribuera PowerShell](06-PowerShell-Automation/)** — genomföra en avgränsad ändring och kontrollera både registervärde och logg.
 
 ## Projekt och resultat
 
@@ -16,6 +26,16 @@ Jag har byggt och testat en Windows 11-labbmiljö med Microsoft Intune och Micro
 | **[04 Efterlevnad och Conditional Access](04-Compliance-Conditional-Access/)** | Säkerhetskrav och felsökning av resursomfattning | Compliant klient och en inloggning med CA-status `Success` |
 | **[05 Antivirus och brandvägg](05-Defender-Endpoint-Security/)** | Defender-policyer och lokal statuskontroll | Två policyer med `Succeeded`, aktivt antivirusskydd och brandvägg |
 | **[06 PowerShell via Intune](06-PowerShell-Automation/)** | Registerkonfiguration i systemkontext med lokal logg | Värdet ändrat från `0` till `1` och en lyckad enhetskörning |
+
+## Praktiska färdigheter
+
+Arbetet i projekten omfattar att:
+
+- förbereda Windows-klienter för central hantering och kontrollera deras enhetsidentitet,
+- paketera och tilldela en Win32-app samt följa installationen på klienten,
+- konfigurera kryptering, lokala administratörskonton och klientskydd,
+- undersöka policyresultat och åtkomstproblem med rapporter och loggar,
+- distribuera ett PowerShell-skript och dokumentera förändringen före och efter körningen.
 
 ## Mitt arbetssätt
 
@@ -38,8 +58,8 @@ Två exempel på felsökning i projekten:
 
 Projekten är genomförda i en separat testtenant som en del av min förberedelse för MD-102. Konton, grupper och enhetsnamn i skärmbilderna hör till labbmiljön. Dokumentationen skiljer mellan konfigurerade inställningar, verifierade resultat och nästa teststeg.
 
-## Läs vidare
+## Fortsatt utveckling
 
-Välj ett projekt ovan för tekniska detaljer och skärmbilder. PDF:en samlar alla sex projekt i ett sammanhängande dokument. PowerShell-projektet innehåller även källkod och en beskrivning av körningskontexten.
+Nästa steg i labben är att dokumentera nekad åtkomst från en noncompliant enhet, verifiera BitLocker-återställning och testa upprepad skriptkörning. Dessa tester är planerade fördjupningar och ingår inte i de redovisade resultaten.
 
 *Dokumentation uppdaterad september 2026.*
