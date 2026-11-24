@@ -40,7 +40,16 @@ netsh advfirewall show allprofiles
 
 ![Aktiverade brandväggsprofiler och Domain-profilens effektiva policy](images/firewall-local-verification.jpg)
 
-Alla tre profiler visar `Enabled: True`. Eftersom den första kontrollen visade `NotConfigured` för standardåtgärderna kompletterade jag med `netsh`. Den synliga Domain-profilen visar `BlockInbound,AllowOutbound`.
+### Felsökning av lokal brandväggsstatus
+
+| Steg | Observation och slutsats |
+| :--- | :--- |
+| Första kontrollen | Alla tre profiler visade `Enabled: True`, men standardåtgärderna visades som `NotConfigured`. |
+| Kompletterande kontroll | Jag använde `netsh advfirewall show allprofiles` för att få ytterligare underlag om den lokala brandväggsstatusen. |
+| Resultat | Den synliga Domain-profilen visade `ON` och `BlockInbound,AllowOutbound`. |
+| Avgränsning | Bilden verifierar Domain-profilens standardåtgärder. Motsvarande värden för Private och Public samt trafiktester behöver dokumenteras separat. |
+
+Jag kunde därmed skilja uppgiften om aktiverade profiler från uppgiften om deras standardåtgärder och undvika att dra slutsatsen att brandväggen var avstängd.
 
 <details>
 <summary>Visa distributionsrapporterna för båda policyerna</summary>

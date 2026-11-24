@@ -20,11 +20,13 @@ Jag kopplade säkerhetskrav i Intune till ett åtkomstvillkor i Microsoft Entra 
 
 Första inloggningstestet gav `Not Applied` trots att CA-policyn var aktiverad. Jag öppnade policydetaljerna i inloggningsloggen och såg att resursen inte ingick. Jag ändrade målresurserna till **All resources** och testade igen.
 
-| Steg | Observation eller åtgärd |
+| Steg | Observation och slutsats |
 | :--- | :--- |
-| Första testet | `Not Applied`; resursen var inte inkluderad |
-| Åtgärd | Korrigerade målresurserna och behöll kravet på compliant enhet |
-| Nytt test | OfficeHome-inloggningen visar CA-status `Success` |
+| Symtom | Inloggningen visade `Not Applied` trots att policyn var On. |
+| Undersökning | Policydetaljerna visade `Resource: Not matched` och `Not included`. Det gav en konkret avvikelse att undersöka i resursomfattningen. |
+| Åtgärd | Jag ändrade målresurserna till All resources och behöll kravet på compliant enhet. |
+| Omtest | En ny OfficeHome-inloggning visade CA-status `Success`. |
+| Avgränsning | Det lyckade testet behöver kompletteras med ett separat test av nekad åtkomst. |
 
 ## Verifiering
 
