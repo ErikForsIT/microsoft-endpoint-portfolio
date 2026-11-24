@@ -1,38 +1,45 @@
-# Portfolio – Microsoft Endpoint Management
+# Microsoft Intune och Windowsadministration
 
-Praktisk portfolio inom Microsoft Intune och Microsoft Entra ID av **Erik Fors**.
+**Erik Fors · Teknisk portfolio · Sex praktiska projekt**
 
-Det här repot dokumenterar sex praktiska projekt som genomförts i en separat labbtenant med hanterade virtuella Windows 11-klienter. Arbetet omfattar provisionering, säkerhet, applikationsdistribution, efterlevnad, åtkomstkontroll och PowerShell-automatisering.
+Jag har byggt och testat en Windows 11-labbmiljö med Microsoft Intune och Microsoft Entra ID. Här visar jag hur jag provisionerar enheter, distribuerar appar, konfigurerar klientskydd och felsöker åtkomst. Varje projekt beskriver mina konfigurationsval och hur jag kontrollerade resultatet.
 
-[Ladda ned den kompletta portfolion (PDF)](docs/Erik-Fors-Microsoft-Endpoint-Portfolio.pdf)
+**[Läs portfolion som PDF – 16 sidor](docs/Erik-Fors-Microsoft-Endpoint-Portfolio.pdf)** · [Visa PowerShell-källkoden](06-PowerShell-Automation/scripts/Configure-WindowsBaseline.ps1)
 
-![MD-102-labbmiljö](assets/portfolio-banner.jpg)
+## Projekt och resultat
 
-## Projekt
+| Projekt | Praktiskt arbete | Dokumenterat resultat |
+| :--- | :--- | :--- |
+| **[01 Windows Autopilot](01-Windows-Autopilot/)** | Användardriven distribution, ESP och OOBE | Lyckad distribution och `AzureAdJoined : YES` |
+| **[02 BitLocker och Windows LAPS](02-BitLocker-Windows-LAPS/)** | Diskkryptering och hanterat lokalt administratörskonto | BitLocker aktivt på C: och LAPS-post med rotationsinformation |
+| **[03 Win32 med 7-Zip](03-Win32-App-Deployment/)** | Paketering, tyst installation och identifieringsregel | `Installed` i Intune och appen synlig på klienten |
+| **[04 Efterlevnad och Conditional Access](04-Compliance-Conditional-Access/)** | Säkerhetskrav och felsökning av resursomfattning | Compliant klient och en inloggning med CA-status `Success` |
+| **[05 Antivirus och brandvägg](05-Defender-Endpoint-Security/)** | Defender-policyer och lokal statuskontroll | Två policyer med `Succeeded`, aktivt antivirusskydd och brandvägg |
+| **[06 PowerShell via Intune](06-PowerShell-Automation/)** | Registerkonfiguration i systemkontext med lokal logg | Värdet ändrat från `0` till `1` och en lyckad enhetskörning |
 
-| Projekt | Omfattning | Verifierat resultat |
-|---|---|---|
-| [01 · Windows Autopilot](01-Windows-Autopilot/) | Hardware hash, distributionsprofil, OOBE och Entra-anslutning | Lyckad användardriven distribution och hanterad enhetsstatus |
-| [02 · BitLocker och Windows LAPS](02-BitLocker-Windows-LAPS/) | Diskkryptering, återställning och hanterad lokal administratör | Policyerna tillämpades, OS-disken krypterades och LAPS-lösenordet roterades |
-| [03 · Win32-appdistribution](03-Win32-App-Deployment/) | Paketering och distribution av 7-Zip | Applikationen installerades och rapporterades som installerad i Intune |
-| [04 · Efterlevnad och villkorsstyrd åtkomst](04-Compliance-Conditional-Access/) | Enhetshälsa och åtkomstkrav | Enheten blev compliant och Conditional Access utvärderades framgångsrikt |
-| [05 · Defender Endpoint Security](05-Defender-Endpoint-Security/) | Microsoft Defender Antivirus och Windows Defender Firewall | Policyerna lyckades och det effektiva skyddet verifierades lokalt |
-| [06 · PowerShell-automatisering](06-PowerShell-Automation/) | Intune Platform script i systemkontext | Registerbaslinjen ändrades, loggades lokalt och rapporterades som lyckad |
+## Mitt arbetssätt
 
-## Tekniker
+Jag börjar med ett avgränsat mål och en tilldelning till rätt användare eller enheter. Efter distributionen följer jag status i Intune eller Entra och kompletterar med lokala kontroller där det är relevant.
 
-- Microsoft Intune
-- Microsoft Entra ID och Conditional Access
-- Windows Autopilot
-- Windows 11 Enterprise
-- Microsoft Defender Antivirus och Windows Defender Firewall
-- BitLocker och Windows LAPS
-- Win32 Content Prep Tool
-- PowerShell
+Två exempel på felsökning i projekten:
 
-## Verifieringsmetod
+- **Conditional Access:** `Not Applied` ledde till kontroll av policydetaljerna. När målresursen korrigerades visade ett nytt test `Success`.
+- **Windows Firewall:** `NotConfigured` i en PowerShell-vy kompletterades med `netsh` för att kontrollera Domain-profilens effektiva standardåtgärder.
 
-Varje projekt stöds av bevis från minst två nivåer: rapportering i Intune eller Entra samt lokal verifiering i Windows. Exempel är distributionsrapporter, enhetsstatus, inloggningsloggar, `dsregcmd`, registerfrågor, `Get-MpComputerStatus` och `Get-NetFirewallProfile`.
+## Labbmiljö och omfattning
 
-> Detta är en utbildnings- och labbportfolio. Namn, grupper och policyer är labbresurser och inte produktionssystem.
+| Del | Använd teknik |
+| :--- | :--- |
+| Hantering och identitet | Microsoft Intune, Microsoft Entra ID och Windows Autopilot |
+| Klienter | Virtuella Windows 11-enheter i Hyper-V |
+| Säkerhet | BitLocker, Windows LAPS, Microsoft Defender Antivirus och Windows Firewall |
+| Distribution och automation | Win32 Content Prep Tool och PowerShell |
+| Uppföljning | Statusrapporter, inloggningsloggar, registerkontroller och lokala loggfiler |
 
+Projekten är genomförda i en separat testtenant som en del av min förberedelse för MD-102. Konton, grupper och enhetsnamn i skärmbilderna hör till labbmiljön. Dokumentationen skiljer mellan konfigurerade inställningar, verifierade resultat och nästa teststeg.
+
+## Läs vidare
+
+Välj ett projekt ovan för tekniska detaljer och skärmbilder. PDF:en samlar alla sex projekt i ett sammanhängande dokument. PowerShell-projektet innehåller även källkod och en beskrivning av körningskontexten.
+
+*Dokumentation uppdaterad september 2026.*

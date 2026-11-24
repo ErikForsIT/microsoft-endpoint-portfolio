@@ -1,37 +1,54 @@
-# Projekt 02 · BitLocker och Windows LAPS
+# 02 BitLocker och Windows LAPS
 
-## Syfte
+**Resultat:** BitLocker är aktivt på C:. LAPS visar kontot `WLapsAdmin` med lagrat lösenord samt senaste och nästa rotation. Båda policyerna rapporterar lyckad tillämpning.
 
-Förstärka säkerheten på en hanterad Windows 11-enhet med centralt styrd kryptering av operativsystemdisken och ett unikt, automatiskt roterat lokalt administratörslösenord.
+## Mål och konfiguration
+
+Jag konfigurerade diskkryptering och ett centralt hanterat lokalt administratörskonto. Målet var att skydda data på klienten och undvika ett statiskt administratörslösenord.
+
+| Del | Val i labben |
+| :--- | :--- |
+| BitLocker | Krav på enhetskryptering och konfiguration av operativsystemdisken |
+| Startautentisering | TPM och alternativa startmetoder tillåtna; start-PIN inte obligatorisk |
+| Windows LAPS | Automatisk kontohantering för `WLapsAdmin` |
+| Lösenordsbackup | Microsoft Entra ID |
+| Lösenordspolicy | Lösenordsfras med sex ord och 30 dagars lösenordsålder |
+| Tilldelning | Enhetsgrupp med Windows 11-filter |
 
 ## Genomförande
 
-- Konfigurerade Windows LAPS med säkerhetskopiering av lösenordet till Microsoft Entra ID.
-- Aktiverade automatisk kontohantering för `WLapsAdmin`.
-- Konfigurerade 30 dagars rotationsintervall och en lösenordsfras med sex ord.
-- Skapade en endpoint security-policy för BitLocker på operativsystemdisken.
-- Konfigurerade TPM/startbeteende och ett 48-siffrigt återställningslösenord.
-- Begränsade distributionen till Windows 11-enheter med ett tilldelningsfilter.
+Jag skapade separata profiler för BitLocker och Windows LAPS, konfigurerade inställningarna och riktade tilldelningen till Windows-enheter. Efter att Intune rapporterade lyckad tillämpning kontrollerade jag krypteringsstatus på klienten och LAPS-postens rotationsinformation.
 
-## Resultat
+## Verifiering
 
-Båda policyerna rapporterade lyckad distribution utan fel eller konflikter. BitLocker var aktivt på `C:` och Intune visade det hanterade LAPS-kontot med tidpunkter för lösenordsrotation.
+![BitLocker är aktivt på operativsystemdisken C](images/bitlocker-client.jpg)
 
-### LAPS-policy
+![LAPS visar WLapsAdmin med maskerat lösenord och rotationsinformation](images/laps-password-record.jpg)
 
-![Windows LAPS-policy](images/laps-policy.jpg)
+| Kontroll | Resultat |
+| :--- | :--- |
+| BitLocker-policy | Två lyckade tillämpningar, inga fel eller konflikter |
+| LAPS-policy | En lyckad tillämpning, inga fel eller konflikter |
+| Klientkontroll | `C: BitLocker på` |
+| LAPS-post | Kontonamn, maskerat lösenord och rotationsdatum visas |
 
-### Distributionsstatus
+<details>
+<summary>Visa LAPS-konfiguration och policyrapporter</summary>
 
-![Status för BitLocker](images/bitlocker-status.jpg)
+![LAPS med Entra-backup och automatisk kontohantering](images/laps-policy.jpg)
 
-![Status för Windows LAPS](images/laps-status.jpg)
+![BitLocker-policy med lyckad tillämpning](images/bitlocker-status.jpg)
 
-### Verifiering på klienten och i Intune
+![LAPS-policy med lyckad tillämpning](images/laps-status.jpg)
 
-![BitLocker aktiverat lokalt](images/bitlocker-client.jpg)
+</details>
 
-![Lösenordspost för Windows LAPS](images/laps-password-record.jpg)
+## Lärdom och nästa test
 
-[Tillbaka till portfolion](../README.md)
+En lyckad policytillämpning behöver kompletteras med kontroll av klientens krypteringsstatus. LAPS-lösenord och BitLocker-återställningsinformation är också separata delar som måste verifieras var för sig.
 
+BitLocker-profilen innehöll alternativ för ett återställningslösenord med 48 siffror och AD DS-specifika inställningar. Nästa steg är att anpassa återställningsvalen för den Entra-anslutna miljön och verifiera backup, hämtning och återställning. Något genomfört återställningstest redovisas inte här.
+
+---
+
+[Projektöversikt](../README.md) · [Föregående projekt](../01-Windows-Autopilot/) · [Nästa projekt](../03-Win32-App-Deployment/)
