@@ -31,7 +31,7 @@ Lokala regler fick slås samman med policyn. Loggning av lyckade anslutningar oc
 
 ![Lokal PowerShell-kontroll av Microsoft Defender Antivirus](images/antivirus-local-verification.jpg)
 
-Skärmbilden visar `True` för `AntivirusEnabled`, `RealTimeProtectionEnabled` och `IoavProtectionEnabled`. Den bekräftar inte beteendeövervakning: den kolumnen saknar värde i den dokumenterade kontrollen.
+Skärmbilden visar `True` för `AntivirusEnabled`, `RealTimeProtectionEnabled` och `IoavProtectionEnabled`. I kommandot skrev jag `BehaviourMonitorEnabled`, vilket gav en tom kolumn. För att kontrollera beteendeövervakningen behöver jag göra om avläsningen med rätt egenskapsnamn, `BehaviorMonitorEnabled`.
 
 ```powershell
 Get-NetFirewallProfile | Select-Object Name, Enabled, DefaultInboundAction, DefaultOutboundAction

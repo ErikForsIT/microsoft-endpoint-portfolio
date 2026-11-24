@@ -45,7 +45,7 @@ Första inloggningstestet gav `Not Applied` trots att CA-policyn var aktiverad. 
 
 Läget On räcker inte för att en CA-policy ska träffa en viss inloggning. Resurs, tilldelning och villkor behöver matcha testet. Inloggningsloggens policydetaljer gav underlag för att hitta avvikelsen.
 
-Den dokumenterade inloggningen visar ett godkänt test. Ett separat test av nekad åtkomst från en noncompliant enhet återstår. Kravet på maskinrisk är konfigurerat; separat riskrapportering från Defender for Endpoint verifieras inte av bilderna här.
+OfficeHome-raden visar den sammanlagda CA-statusen för inloggningen. För att knyta resultatet till just policyn som kräver en compliant enhet behövs policydetaljerna för samma inloggning. Ett separat test av nekad åtkomst från en noncompliant enhet återstår. Kravet på maskinrisk är konfigurerat; separat riskrapportering från Defender for Endpoint verifieras inte av bilderna här.
 
 ---
 
